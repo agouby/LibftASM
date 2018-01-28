@@ -1,0 +1,33 @@
+NAME = libfts.a
+CC = nasm
+FLAGS = -f
+UNAME = $(shell uname -s)
+LINUX_FLAG = elf64
+MACOS_FLAG = macho64
+
+INC_FOLDER = ./includes/
+SRC_FOLDER = ./srcs/
+OBJ_FOLDER = ./builds/
+
+SRC_FILES = ft_isalpha.s
+
+SRCS = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
+OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))
+
+ifeq ($(UNAME), Linux)
+	FLAGS += $(LINUX_FLAG)
+else
+	FLAGS += $(MACOS_FLAG)
+endif
+
+all: $(NAME)
+
+$(NAME): $(OBJ_FOLDER) $(OBJS)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
+
+$(OBJ_FOLDER):
+	mkdir -p $(OBJ_FOLDER)
+
+$(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.s
+	$(CC) $(FLAGS) $< -o $@
