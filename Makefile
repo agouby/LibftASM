@@ -1,15 +1,20 @@
-NAME = libfts.a
-CC = nasm
-FLAGS = -f
-UNAME = $(shell uname -s)
-LINUX_FLAG = elf64
-MACOS_FLAG = macho64
+NAME		= libfts.a
+CC		= nasm
+FLAGS		= -f
+UNAME		= $(shell uname -s)
+LINUX_FLAG	= elf64
+MACOS_FLAG	= macho64
 
-INC_FOLDER = ./includes/
-SRC_FOLDER = ./srcs/
-OBJ_FOLDER = ./builds/
+INC_FOLDER	= ./includes/
+SRC_FOLDER	= ./srcs/
+OBJ_FOLDER	= ./builds/
 
-SRC_FILES = ft_isalpha.s
+SRC_FILES	= ft_isalpha.s \
+		  ft_isdigit.s \
+		  ft_tolower.s \
+		  ft_toupper.s \
+		  ft_isascii.s \
+
 
 SRCS = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))
@@ -23,11 +28,20 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ_FOLDER) $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 $(OBJ_FOLDER):
-	mkdir -p $(OBJ_FOLDER)
+	@mkdir -p $(OBJ_FOLDER)
 
 $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.s
-	$(CC) $(FLAGS) $< -o $@
+	@printf "Compiling $< as $@\n"
+	@$(CC) $(FLAGS) $< -o $@
+
+clean:
+	@rm -rf $(OBJ_FOLDER)
+
+fclean: clean
+	@rm -rf $(NAME)
+
+re: fclean all

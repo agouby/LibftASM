@@ -1,0 +1,15 @@
+- bzero
+- strcat
+X isalpha
+X isdigit
+- isalnum
+- isascii
+- isprint
+X toupper
+X tolower
+- puts
+
+- strlen
+- memset
+- memcpy
+- strdup
