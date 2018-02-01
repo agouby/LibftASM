@@ -1,16 +1,23 @@
-global ft_isdigit
+global	_ft_isdigit
 
-ft_isdigit:
-	cmp rdi, 48
-	jl _fail
-	cmp rdi, 57
-	jg _fail
-	jmp _success
-
-_fail:
-	mov rax, 0
-	ret
+_ft_isdigit:
+	push rbp
+	mov	rbp, rsp
+	cmp rdi, 0x30
+	jl	_fail
+	cmp rdi, 0x39
+	jle _success
+	jmp _fail
 
 _success:
-	mov rax, 1
+	mov rax, 0x1
+	jmp _exit
+
+_fail:
+	xor rax, rax
+	jmp _exit
+
+_exit:
+	mov	rsp, rbp
+	pop rbp
 	ret

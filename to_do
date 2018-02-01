@@ -2,9 +2,9 @@
 - strcat
 X isalpha
 X isdigit
-- isalnum
-- isascii
-- isprint
+X isalnum
+X isascii
+X isprint
 X toupper
 X tolower
 - puts

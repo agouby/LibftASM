@@ -1,8 +1,12 @@
-global	_ft_isalpha
+global	_ft_isalnum
 
-_ft_isalpha:
+_ft_isalnum:
 	push rbp
 	mov rbp, rsp
+	cmp rdi, 0x30
+	jl	_fail
+	cmp rdi, 0x39
+	jle	_success
 	cmp rdi, 0x41
 	jl	_fail
 	cmp rdi, 0x5A

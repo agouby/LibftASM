@@ -1,11 +1,11 @@
-global	_ft_isascii
+global	_ft_isprint
 
-_ft_isascii:
+_ft_isprint:
 	push rbp
 	mov	rbp, rsp
-	and rdi, rdi
-	js	_fail
-	cmp rdi, 0x7F
+	cmp rdi, 0x20
+	jl	_fail
+	cmp rdi, 0x7e
 	jle _success
 	jmp _fail
 
@@ -15,7 +15,7 @@ _success:
 
 _fail:
 	xor rax, rax
-	jmp _exit
+	jmp	_exit
 
 _exit:
 	mov	rsp, rbp

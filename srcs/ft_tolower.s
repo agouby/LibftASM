@@ -1,13 +1,23 @@
-global ft_tolower
+global	_ft_tolower
 
-ft_tolower:
-	mov rax, rdi
-	cmp rdi, 65
-	jl _exit
-	cmp rdi, 90
-	jg _exit
-	add rax, 32
+_ft_tolower:
+	push rbp
+	mov rbp, rsp
+	mov eax, edi
+	cmp rdi, 0x41
+	jl _fail
+	cmp rdi, 0x5A
+	jg _fail
+	jmp _success
+	
+_fail:
+	jmp _exit
+
+_success:
+	add eax, 0x20
 	jmp _exit
 
 _exit:
+	mov rsp, rbp
+	pop rbp
 	ret

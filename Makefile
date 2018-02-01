@@ -9,12 +9,15 @@ INC_FOLDER	= ./includes/
 SRC_FOLDER	= ./srcs/
 OBJ_FOLDER	= ./builds/
 
-SRC_FILES	= ft_isalpha.s \
-		  ft_isdigit.s \
-		  ft_tolower.s \
-		  ft_toupper.s \
-		  ft_isascii.s \
-
+SRC_FILES	=	ft_isalpha.s \
+				ft_islower.s \
+				ft_isupper.s \
+				ft_isprint.s \
+				ft_isascii.s \
+				ft_isdigit.s \
+				ft_isalnum.s \
+				ft_tolower.s \
+				ft_toupper.s \
 
 SRCS = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))
