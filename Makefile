@@ -18,6 +18,8 @@ SRC_FILES	=	ft_isalpha.s \
 				ft_isalnum.s \
 				ft_tolower.s \
 				ft_toupper.s \
+				ft_strlen.s \
+				ft_puts.s \
 
 SRCS = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))
