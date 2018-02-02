@@ -20,8 +20,10 @@ SRC_FILES	=	ft_isalpha.s \
 				ft_toupper.s \
 				ft_strlen.s \
 				ft_puts.s \
+				ft_bzero.s \
+				ft_memset.s \
 
-SRCS = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
+SRC = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))
 
 ifeq ($(UNAME), Linux)

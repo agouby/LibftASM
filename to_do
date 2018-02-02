@@ -1,4 +1,4 @@
-- bzero
+X bzero
 - strcat
 X isalpha
 X isdigit
@@ -7,9 +7,9 @@ X isascii
 X isprint
 X toupper
 X tolower
-- puts
+X puts
 
 X strlen
-- memset
+X memset
 - memcpy
 - strdup
