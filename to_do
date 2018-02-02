@@ -9,7 +9,7 @@ X toupper
 X tolower
 - puts
 
-- strlen
+X strlen
 - memset
 - memcpy
 - strdup
