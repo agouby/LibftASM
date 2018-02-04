@@ -6,7 +6,6 @@ _ft_bzero:
 	mov rbp, rsp
 	and rsi, rsi
 	je _exit
-	call _while
 
 _while:
 	mov byte[rdi], 0x0

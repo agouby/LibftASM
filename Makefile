@@ -22,6 +22,12 @@ SRC_FILES	=	ft_isalpha.s \
 				ft_puts.s \
 				ft_bzero.s \
 				ft_memset.s \
+				ft_memcpy.s \
+				ft_strcat.s \
+				ft_strdup.s \
+				ft_cat.s \
+				ft_strchr.s \
+				ft_swapi.s \
 
 SRC = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))

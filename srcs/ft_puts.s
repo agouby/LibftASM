@@ -1,5 +1,5 @@
 global	_ft_puts
-extern	ft_strlen
+extern	_ft_strlen
 
 _ft_puts:
 	push rbp
@@ -7,17 +7,17 @@ _ft_puts:
 	and rdi, rdi
 	je	_null
 	mov rsi, rdi
-	call ft_strlen
+	call _ft_strlen
 	mov rdi, 0x1
 	mov rdx, rax
 	mov rax, 0x2000004
 	syscall
-	cmp rax, -1
-	je _exit
+	jc	_fail
 	mov rax, 0x2000004
 	lea rsi, [rel endline]
 	mov rdx, 0x1
 	syscall
+	jc	_fail
 	jmp _exit
 
 _null:
@@ -27,6 +27,9 @@ _null:
 	mov rdx, 0x7
 	syscall
 	jmp	_exit
+
+_fail:
+	mov rax, -1
 
 _exit:
 	mov rsp, rbp

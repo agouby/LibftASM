@@ -1,5 +1,5 @@
 X bzero
-- strcat
+X strcat
 X isalpha
 X isdigit
 X isalnum
@@ -11,5 +11,11 @@ X puts
 
 X strlen
 X memset
-- memcpy
-- strdup
+X memcpy
+X strdup
+X cat
+X strchr
+X swapi
+- strcmp
+- swapc
+- swaps
