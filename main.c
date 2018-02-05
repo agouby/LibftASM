@@ -2,6 +2,9 @@
 #include <unistd.h>
 #include <ctype.h>
 #include "libfts.h"
+#include <string.h>
+#include <stdlib.h>
+#include <fcntl.h>
 
 #define EOC		"\e[0m"
 #define RED		"\e[91m"
@@ -213,12 +216,40 @@ void	test_toupper(void)
 	JL;
 }
 
+void	print_bits(const size_t size, const void *arg)
+{
+	size_t	i;
+	size_t	j;
+	unsigned char *ptr = (unsigned char *)arg;
+
+	i = size;
+	while (i)
+	{
+		j = 0;
+		while (j < 7)
+		{
+			printf("%d", (ptr[i - 1] >> j) & 1);
+			j++;
+		}
+		if (i != 1)
+			printf(" ");
+		i--;
+	}
+	puts("");
+}
+
+
 //	printf("%d, %d\n", ft_isalnum(i), isalnum(i));
 
 int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
+	const char	*s1 = "ello\0";
+	const char	*s2 = "HelLl\0";
+
+	printf("%d\n", ft_strcmp(s1, s2));
+/*
 	print_legend();
 	test_toupper();
 	test_tolower();
@@ -230,5 +261,5 @@ int		main(int ac, char **av)
 	test_isupper();
 	test_islower();
 	printf("%ld/%d\n", s_cnt, 9 * (A_E - A_S));
-	return (0);
+*/	return (0);
 }

@@ -19,6 +19,10 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strdup(const char *s1);
 void	ft_cat(int fd);
 char	*ft_strchr(const char *s, int c);
-void	ft_swapi(void *a, void *b);
+void	ft_swapi(int *a, int *b);
+void	ft_swapc(char *a, char *b);
+void	ft_swaps(char **a, char **b);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strequ(char const *s1, char const *s2);
 
 #endif

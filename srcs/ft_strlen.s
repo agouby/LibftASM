@@ -3,15 +3,16 @@ global	_ft_strlen
 _ft_strlen:
 	push rbp
 	mov rbp, rsp
-	push rdi
-	xor rcx, rcx
-	not rcx
-	xor al, al
-	cld
-	repne scasb
-	not rcx
-	lea rax, [rcx - 0x1]
-	pop rdi
+	xor rax, rax
+
+_while:
+	mov dl, [rdi + rax]
+	and dl, dl
+	je	_exit
+	inc rax
+	jmp	_while
+
+_exit:
 	mov rsp, rbp
 	pop rbp
 	ret
