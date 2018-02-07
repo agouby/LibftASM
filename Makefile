@@ -31,7 +31,7 @@ SRC_FILES	=	ft_isalpha.s \
 				ft_swapc.s \
 				ft_swaps.s \
 				ft_strcmp.s \
-				ft_strequ.s \
+				ft_strequ.s
 
 SRC = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))
