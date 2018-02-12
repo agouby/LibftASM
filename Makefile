@@ -1,5 +1,5 @@
 NAME		= libfts.a
-CC		= nasm
+CC			= nasm
 FLAGS		= -f
 UNAME		= $(shell uname -s)
 LINUX_FLAG	= elf64

@@ -13,8 +13,8 @@
 #define CHAR	"\e[36m"
 #define INT		"\e[35m"
 
-#define A_S		-128
-#define A_E		128
+#define A_S		97
+#define A_E		105
 
 size_t s_cnt = 0;
 
@@ -245,11 +245,19 @@ int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	const char	*s1 = "ello\0";
+/*
+	int i = 60000000;
+	while (i)
+	{
+		ft_strlen("EIUHFIWHUFHUWEOHUFWEIUHhfuiwehfiwhiofewhfiowehfiowuehfwoeiufhiwuehfriughieurghuierihugeiruoghoiueriuhgerhiughiuerhigerhghierghirehirgeiurgierhigfrgnjdfojngsogjfegfehgioefbervofjj");
+		i--;
+	}
+	*/
+	printf("%ld\n", ft_strlen("Hello"));
+	/*	const char	*s1 = "ello\0";
 	const char	*s2 = "HelLl\0";
 
-	printf("%d\n", ft_strcmp(s1, s2));
-/*
+
 	print_legend();
 	test_toupper();
 	test_tolower();
@@ -262,4 +270,5 @@ int		main(int ac, char **av)
 	test_islower();
 	printf("%ld/%d\n", s_cnt, 9 * (A_E - A_S));
 */	return (0);
+
 }
