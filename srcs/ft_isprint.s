@@ -1,23 +1,17 @@
-global	_ft_isprint
+global ft_isprint
 
-_ft_isprint:
-	push rbp
-	mov	rbp, rsp
-	cmp rdi, 0x20
-	jl	_fail
-	cmp rdi, 0x7e
-	jle _success
-	jmp _fail
+section .text
 
-_success:
+ft_isprint:
+	cmp rdi, 0x20 ;
+	jl err
+	cmp rdi, 0x7E ;
+	jg err
 	mov rax, 0x1
-	jmp _exit
+	jmp end
 
-_fail:
+err:
 	xor rax, rax
-	jmp	_exit
 
-_exit:
-	mov	rsp, rbp
-	pop rbp
+end:
 	ret

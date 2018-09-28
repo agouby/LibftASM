@@ -1,20 +1,16 @@
-global	_ft_bzero
-extern	_ft_puts
+global ft_bzero
 
-_ft_bzero:
-	push rbp
-	mov rbp, rsp
-	and rsi, rsi
-	je _exit
+section .text
 
-_while:
-	mov byte[rdi], 0x0
-	dec rsi
-	inc rdi
-	and rsi, rsi
-	jne _while
-
-_exit:
-	mov rsp, rbp
-	pop rbp
+ft_bzero:
+	xor rcx, rcx
+	
+loop:
+	cmp rsi, rcx
+	je end
+	mov byte[rdi + rcx], 0x0
+	inc rcx
+	jmp loop
+	
+end:
 	ret

@@ -1,23 +1,17 @@
-global	_ft_isupper
+global ft_isupper
 
-_ft_isupper:
-	push rbp
-	mov rbp, rsp
-	cmp rdi, 0x41
-	jl _fail
-	cmp rdi, 0x5A
-	jg _fail
-	jmp _success
-	
-_fail:
-	xor eax, eax
-	jmp _exit
+section .text
 
-_success:
-	mov eax, 0x1
-	jmp _exit
+ft_isupper:
+	cmp rdi, 0x41 ; 'A'
+	jl err
+	cmp rdi, 0x5A ; 'Z'
+	jg err
+	mov rax, 0x1
+	jmp end
 
-_exit:
-	mov rsp, rbp
-	pop rbp
+err:
+	xor rax, rax
+
+end:
 	ret

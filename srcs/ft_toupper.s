@@ -1,23 +1,18 @@
-global	_ft_toupper
+global ft_toupper
+extern ft_islower
 
-_ft_toupper:
-	push rbp
-	mov rbp, rsp
-	mov eax, edi
-	cmp rdi, 0x61
-	jl _fail
-	cmp rdi, 0x7A
-	jg _fail
-	jmp _success
-	
-_fail:
-	jmp _exit
+section .text
 
-_success:
-	sub eax, 0x20
-	jmp _exit
+ft_toupper:
+	call ft_islower
+	cmp rax, 0x0
+	je err
+	mov rax, rdi
+	sub rax, 0x20
+	jmp end
 
-_exit:
-	mov rsp, rbp
-	pop rbp
+err:
+	mov rax, rdi
+
+end:
 	ret

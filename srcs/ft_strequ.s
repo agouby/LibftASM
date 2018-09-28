@@ -1,8 +1,8 @@
 global	_ft_strequ
 
+section .text
+
 _ft_strequ:
-	push rbp
-	mov rbp, rsp
 	xor rcx, rcx
 	xor rax, rax
 	xor rdx, rdx
@@ -28,6 +28,4 @@ _set:
 	inc al
 
 _exit:
-	mov rsp, rbp
-	pop rbp
 	ret

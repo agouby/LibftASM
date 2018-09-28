@@ -1,24 +1,21 @@
-global	_ft_strcat
-extern	_ft_strlen
+global ft_strcat
+extern ft_strlen
 
-_ft_strcat:
-	push rbp
-	mov rbp, rsp
-	call _ft_strlen
+section .text
+
+ft_strcat:
+	call ft_strlen
 	xor rcx, rcx
 
-_while:
+loop:
 	cmp byte[rsi + rcx], 0x0
-	jz _exit
-	mov dl, byte[rsi + rcx]
-	mov byte[rdi + rax], dl
-	inc rcx
+	je end
+	mov r8b, byte[rsi + rcx]
+	mov byte[rdi + rax], r8b
 	inc rax
-	jmp _while
+	inc rcx
+	jmp loop
 
-_exit:
-	mov byte[rdi + rax], 0x0
+end:
 	mov rax, rdi
-	mov rsp, rbp
-	pop rbp
 	ret

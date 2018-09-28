@@ -1,8 +1,8 @@
 global	_ft_cat
 
+section .text
+
 _ft_cat:
-	push rbp
-	mov rbp, rsp
 	lea rsi, [rel buf]
 	push rdi
 
@@ -22,8 +22,6 @@ _while:
 	jmp _while
 
 _exit:
-	mov rsp, rbp
-	pop rbp
 	ret
 
 section .data

@@ -1,23 +1,17 @@
-global	_ft_isascii
+global ft_isascii
 
-_ft_isascii:
-	push rbp
-	mov	rbp, rsp
-	and rdi, rdi
-	js	_fail
+section .text
+
+ft_isascii:
+	cmp rdi, 0x0
+	jl err
 	cmp rdi, 0x7F
-	jle _success
-	jmp _fail
-
-_success:
+	jg err
 	mov rax, 0x1
-	jmp _exit
+	jmp end
 
-_fail:
+err:
 	xor rax, rax
-	jmp _exit
 
-_exit:
-	mov	rsp, rbp
-	pop rbp
+end:
 	ret

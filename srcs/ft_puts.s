@@ -1,41 +1,34 @@
-global	_ft_puts
-extern	_ft_strlen
+global ft_puts
+extern ft_strlen
 
-_ft_puts:
-	push rbp
-	mov rbp, rsp
-	and rdi, rdi
-	je	_null
-	mov rsi, rdi
-	call _ft_strlen
-	mov rdi, 0x1
+section .text
+
+ft_puts:
+	cmp rdi, 0x0
+	je empty
+	call ft_strlen
 	mov rdx, rax
-	mov rax, 0x2000004
-	syscall
-	jc	_fail
-	mov rax, 0x2000004
-	lea rsi, [rel endline]
-	mov rdx, 0x1
-	syscall
-	jc	_fail
-	jmp _exit
-
-_null:
-	mov rax, 0x2000004
+	mov rsi, rdi
 	mov rdi, 0x1
-	lea rsi, [rel null]
-	mov rdx, 0x7
+	mov rax, 0x1
 	syscall
-	jmp	_exit
 
-_fail:
-	mov rax, -1
+	mov rdx, 0x1
+	lea rsi, [rel nl]
+	mov rax, 0x1
+	syscall
+	jmp end
 
-_exit:
-	mov rsp, rbp
-	pop rbp
+empty:
+	mov rdx, 0x7
+	mov rsi, null
+	mov rdi, 0x1
+	mov rax, 0x1
+	syscall
+
+end:
 	ret
 
-section .data
-endline	db 0xa
-null	db "(null)", 0xa
+section .rodata
+	null db "(null)", 0xA
+	nl db 0xA

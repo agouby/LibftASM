@@ -1,8 +1,8 @@
 global	_ft_strcmp
 
+section .text
+
 _ft_strcmp:
-	push rbp
-	mov rbp, rsp
 	xor rcx, rcx
 	xor rax, rax
 	xor rdx, rdx
@@ -26,6 +26,4 @@ _test:
 	jmp	_exit
 
 _exit:
-	mov rsp, rbp
-	pop rbp
 	ret

@@ -4,8 +4,6 @@ extern	_ft_strlen
 extern	_ft_memcpy
 
 _ft_strdup:
-	push rbp
-	mov rbp, rsp
 	push rdi
 	call _ft_strlen
 	inc rax
@@ -26,6 +24,4 @@ _fail:
 	mov rax, 0x0
 
 _exit:
-	mov rsp, rbp
-	pop rbp
 	ret

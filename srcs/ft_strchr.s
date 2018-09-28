@@ -1,16 +1,14 @@
 global	_ft_strchr
 
-_ft_strchr:
-	push rbp
-	mov rbp, rsp
+section .text
 
-_while:
+_ft_strchr:
 	cmp byte[rdi], 0x0
 	je	_end
 	cmp sil, byte[rdi]
 	je	_success
 	inc rdi
-	jmp _while
+	jmp _ft_strchr
 
 _success:
 	mov rax, rdi
@@ -26,6 +24,4 @@ _end:
 	jmp	_fail
 
 _exit:
-	mov rbp, rsp
-	pop rbp
 	ret

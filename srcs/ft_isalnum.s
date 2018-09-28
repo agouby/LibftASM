@@ -1,31 +1,19 @@
-global	_ft_isalnum
+global ft_isalnum
+extern ft_isdigit
+extern ft_isalpha
 
-_ft_isalnum:
-	push rbp
-	mov rbp, rsp
-	cmp rdi, 0x30
-	jl	_fail
-	cmp rdi, 0x39
-	jle	_success
-	cmp rdi, 0x41
-	jl	_fail
-	cmp rdi, 0x5A
-	jle	_success
-	cmp rdi, 0x61
-	jl	_fail
-	cmp rdi, 0x7A
-	jle	_success
-	jmp _fail
+section .text
 
-_success:
-	mov rax, 0x1
-	jmp _exit
+ft_isalnum:
+	call ft_isdigit
+	cmp rax, 0x1
+	je end
+	call ft_isalpha
+	cmp rax, 0x1
+	je end
 
-_fail:
+err:
 	xor rax, rax
-	jmp _exit
 
-_exit:
-	mov rsp, rbp
-	pop rbp
+end:
 	ret

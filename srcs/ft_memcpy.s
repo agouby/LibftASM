@@ -1,13 +1,11 @@
-global	_ft_memcpy
+global ft_memcpy
 
-_ft_memcpy:
-	push rbp
-	mov rbp, rsp
+section .text
+
+ft_memcpy:
 	mov rcx, rdx
 	cld
 	rep movsb
 
-_exit:
-	mov rsp, rbp
-	pop rbp
+end:
 	ret

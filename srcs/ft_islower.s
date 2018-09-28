@@ -1,23 +1,17 @@
-global	_ft_islower
+global ft_islower
 
-_ft_islower:
-	push rbp
-	mov rbp, rsp
-	cmp rdi, 0x61
-	jl _fail
-	cmp rdi, 0x7A
-	jg _fail
-	jmp _success
-	
-_fail:
-	xor eax, eax
-	jmp _exit
+section .text
 
-_success:
-	mov eax, 0x1
-	jmp _exit
+ft_islower:
+	cmp rdi, 0x61 ; 'a'
+	jl err
+	cmp rdi, 0x7A ; 'z'
+	jg err
+	mov rax, 0x1
+	jmp end
 
-_exit:
-	mov rsp, rbp
-	pop rbp
+err:
+	xor rax, rax
+
+end:
 	ret
