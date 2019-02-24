@@ -48,6 +48,7 @@ $(NAME): $(OBJ_FOLDER) $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@printf "\e[33m$(NAME)\e[92m successfully created\n"
+	gcc main.c -o main -I./includes libfts.a
 
 $(OBJ_FOLDER):
 	@printf "\e[33mObject folder\e[92m successfully created\n"

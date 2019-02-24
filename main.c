@@ -216,6 +216,112 @@ void	test_toupper(void)
 	JL;
 }
 
+void	test_strlen(void)
+{
+	int  i = 0;
+	const char *test_str[] = {
+	"Hello",
+	"Prout",
+	"",
+	"This is a very long string I guess but don't tell anyone please...\n"
+	};
+
+	int size = sizeof(test_str) / sizeof(*test_str);
+	name("ft_strlen");
+	while (i < size)
+	{
+		if (ft_strlen(test_str[i]) == strlen(test_str[i]))
+		{
+			success(i);
+			s_cnt++;
+		}
+		else
+			fail(i);
+		i++;
+	}
+	JL;
+}
+
+void	test_memset(void)
+{
+	int	i[] =
+	{
+		5,
+		8,
+		4096,
+		100000,
+		0,
+		1
+	};
+	name("ft_memset");
+	char *ptr = malloc(4096);
+	printf("PTR ADDR = %p\n", ptr);
+	memset(ptr, 42, 4096);
+	ptr[2] = 0;
+	printf("RET = %p\n", ft_memset(ptr, 43, 1));
+	printf("STR = %s\n", ptr);
+	free(ptr);
+	/*
+	while (i < size)
+	{
+		if (ft_strlen(test_str[i]) == strlen(test_str[i]))
+		{
+			success(i);
+			s_cnt++;
+		}
+		else
+			fail(i);
+		i++;
+	}*/
+	JL;
+}
+
+void	test_memcpy(void)
+{
+	int	i[] =
+	{
+		5,
+		8,
+		4096,
+		100000,
+		0,
+		1
+	};
+	name("ft_memcpy");
+	char *ptr = malloc(4096);
+	printf("PTR ADDR = %p\n", ptr);
+	memset(ptr, 0, 4096);
+	printf("RET = %p\n", ft_memcpy(ptr, "Hello!", 6));
+	printf("STR = %s\n", ptr);
+	free(ptr);
+	/*
+	while (i < size)
+	{
+		if (ft_strlen(test_str[i]) == strlen(test_str[i]))
+		{
+			success(i);
+			s_cnt++;
+		}
+		else
+			fail(i);
+		i++;
+	}*/
+	JL;
+}
+
+void	test_strcat(void)
+{
+	name("ft_strcat");
+	char *ptr = malloc(4096);
+	printf("PTR ADDR = %p\n", ptr);
+	memset(ptr, 0, 4096);
+	strcpy(ptr, "Hello ");
+	printf("RET ADDR = %p\n", ft_strcat(ptr, "World!"));
+	printf("{%s}\n", ptr);
+	free(ptr);
+
+}
+
 void	print_bits(const size_t size, const void *arg)
 {
 	size_t	i;
@@ -245,20 +351,7 @@ int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-/*
-	int i = 60000000;
-	while (i)
-	{
-		ft_strlen("EIUHFIWHUFHUWEOHUFWEIUHhfuiwehfiwhiofewhfiowehfiowuehfwoeiufhiwuehfriughieurghuierihugeiruoghoiueriuhgerhiughiuerhigerhghierghirehirgeiurgierhigfrgnjdfojngsogjfegfehgioefbervofjj");
-		i--;
-	}
-	*/
-	printf("%ld\n", ft_strlen("Hello"));
-	/*	const char	*s1 = "ello\0";
-	const char	*s2 = "HelLl\0";
-
-
-	print_legend();
+/*	print_legend();
 	test_toupper();
 	test_tolower();
 	test_isalnum();
@@ -268,7 +361,11 @@ int		main(int ac, char **av)
 	test_isalpha();
 	test_isupper();
 	test_islower();
-	printf("%ld/%d\n", s_cnt, 9 * (A_E - A_S));
-*/	return (0);
+	test_strlen();
+	test_memset();
+*/	test_memcpy();
+//	test_strcat();
+//printf("%ld/%d\n", s_cnt, 9 * (A_E - A_S));
+	return (0);
 
 }

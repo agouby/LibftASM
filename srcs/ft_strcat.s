@@ -1,3 +1,4 @@
+section .text
 global	_ft_strcat
 extern	_ft_strlen
 
@@ -10,8 +11,8 @@ _ft_strcat:
 _while:
 	cmp byte[rsi + rcx], 0x0
 	jz _exit
-	mov dl, byte[rsi + rcx]
-	mov byte[rdi + rax], dl
+	mov r8b, byte[rsi + rcx]
+	mov byte[rdi + rax], r8b
 	inc rcx
 	inc rax
 	jmp _while
