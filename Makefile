@@ -5,9 +5,11 @@ UNAME		= $(shell uname -s)
 LINUX_FLAG	= elf64
 MACOS_FLAG	= macho64
 
-INC_FOLDER	= ./includes/
-SRC_FOLDER	= ./srcs/
-OBJ_FOLDER	= ./builds/
+INC_FOLDER	= ./include/
+SRC_FOLDER	= ./src/
+OBJ_FOLDER	= ./build/
+
+TEST=./test
 
 SRC_FILES	=	ft_isalpha.s \
 				ft_islower.s \
@@ -35,6 +37,7 @@ SRC_FILES	=	ft_isalpha.s \
 
 SRC = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_FOLDER), $(SRC_FILES:.s=.o))
+INC = $(addprefix $(INC_FOLDER), libfts.h)
 
 ifeq ($(UNAME), Linux)
 	FLAGS += $(LINUX_FLAG)
@@ -44,25 +47,35 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FOLDER) $(OBJS)
+$(NAME): $(OBJS) test.c
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@printf "\e[33m$(NAME)\e[92m successfully created\n"
-	gcc main.c -o main -I./includes libfts.a
+	gcc test.c -o test -I$(INC_FOLDER) libfts.a
+
+test: test.c
+	gcc test.c -o test -I$(INC_FOLDER) libfts.a
 
 $(OBJ_FOLDER):
 	@printf "\e[33mObject folder\e[92m successfully created\n"
-	@mkdir -p $(OBJ_FOLDER)
+	mkdir -p $(OBJ_FOLDER)
 
-$(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.s
-	@$(CC) $(FLAGS) $< -o $@
+$(SRC): $(OBJ_FOLDER)
+
+$(OBJS): $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.s
+	@echo Compiling $< $@
+	@$(CC) $(FLAGS) $< -o $@ 
 
 clean:
-	@rm -rf $(OBJ_FOLDER)
+	rm -rf $(OBJ_FOLDER)
 	@printf "\e[91mObject files deleted\n"
 
 fclean: clean
 	@printf "\e[91m$(NAME) deleted\n"
-	@rm -rf $(NAME)
+	rm -rf $(NAME)
 
-re: fclean all
+re:
+	make fclean
+	make all
+
+.PHONY: all re fclean clean

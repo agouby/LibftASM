@@ -11,3 +11,4 @@ _ft_swapc:
 _exit:
 	mov rsp, rbp
 	pop rbp
+	ret

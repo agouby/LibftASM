@@ -3,6 +3,7 @@ global	_ft_strequ
 _ft_strequ:
 	push rbp
 	mov rbp, rsp
+	
 	xor rcx, rcx
 	xor rax, rax
 	xor rdx, rdx
