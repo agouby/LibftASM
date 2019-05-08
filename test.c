@@ -16,8 +16,6 @@
 #define A_S		0
 #define A_E		10
 
-size_t s_cnt = 0;
-
 #define JL		printf("\n")
 
 #define COUNT_OF(array) (sizeof(array) / sizeof(*array))
@@ -249,7 +247,7 @@ int		gimme_str(char *buf)
 	fflush(stdout);
 	ret = read(0, buf, 4096);
 	if (ret == -1 || !ret)
-		return -11;
+		return -1;
 	buf[ret - 1] = '\0';
 	return 0;
 }
@@ -267,12 +265,6 @@ void	test_strcat(void)
 		memset(buf1, 0, 4096);
 		memset(buf2, 0, 4096);
 		memset(buf3, 0, 4096);
-		/*
-		   if (gimme_str(buf1) == 1)
-		   GETOUT
-		   if (gimme_str(buf2) == 1)
-		   GETOUT
-		   */
 		GIMMESTR(buf1)
 		GIMMESTR(buf2)
 		strcpy(buf3, buf1);
@@ -289,8 +281,6 @@ void	test_puts(void)
 {
 	char buf[4096];
 
-	name("ft_puts");
-	
 	while (1)
 	{
 		name("ft_puts");
@@ -335,8 +325,6 @@ void	test_swapi(void)
 	ft_swapi(&a, &b);
 	printf("A: %d, B: %d\n", a, b);
 }
-
-void	test_cat(void){}
 
 void	test_strchr(void)
 {
@@ -418,7 +406,6 @@ void	test_strcpy(void)
 	char buf1[4096];
 	char buf2[4096];
 	char buf3[4096];
-	char *ptr;
 
 	while (1)
 	{
@@ -429,6 +416,13 @@ void	test_strcpy(void)
 		PRINT("agouby result : {%s}\n", buf2);
 		PRINT("System result : {%s}\n", buf3);
 	}
+}
+
+void	test_cat(void)
+{
+	int fd = 0;
+
+	ft_cat(fd);
 }
 
 size_t	hash(const char *str)
@@ -453,7 +447,6 @@ void	fill_hash(void)
 {
 	const struct tab tmp_tab[] = {
 		{"ft_bzero",test_bzero},
-		{"ft_cat",test_cat},
 		{"ft_isalnum",test_isalnum},
 		{"ft_isalpha",test_isalpha},
 		{"ft_isascii",test_isascii},
@@ -475,12 +468,13 @@ void	fill_hash(void)
 		{"ft_swaps",test_swaps},
 		{"ft_tolower",test_tolower},
 		{"ft_toupper",test_toupper},
-		{"ft_strcpy", test_strcpy}
+		{"ft_strcpy", test_strcpy},
+		{"ft_cat", test_cat}
 	};
 
 	unsigned int h;
 
-	for (int i = 0; i < COUNT_OF(tmp_tab); i++) {
+	for (unsigned int i = 0; i < COUNT_OF(tmp_tab); i++) {
 		h = hash(tmp_tab[i].name) % COUNT_OF(ft_tab);
 		if (ft_tab[h].name) {
 			printf("COLLISION IN HASH !!!\n");
@@ -516,5 +510,4 @@ int		main(void)
 		}
 	}
 	return (0);
-
 }

@@ -70,14 +70,15 @@ clean:
 fclean: clean
 	@printf "\e[91m$(NAME) deleted\n\e[39m"
 	@rm -rf $(NAME)
+	@rm -f test
 
 re:
 	@make fclean
 	@make all
 
 test: $(NAME) test.c
-	@printf "Compiling test file"
-	@gcc test.c -o test -I$(INC_FOLDER) libfts.a
+	@printf "Compiling test file\n"
+	@gcc -Wall -Werror -Wextra test.c -o test -I$(INC_FOLDER) libfts.a
 
 
 .PHONY: all re fclean clean
