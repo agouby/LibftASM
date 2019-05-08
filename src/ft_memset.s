@@ -9,7 +9,6 @@ _ft_memset:
 	mov rcx, rdx
 	cld
 	rep stosb
-	mov rax, rdi
 	pop rax
 	mov rsp, rbp
 	pop rbp

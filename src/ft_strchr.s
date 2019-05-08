@@ -1,3 +1,4 @@
+section .text
 global	_ft_strchr
 
 _ft_strchr:

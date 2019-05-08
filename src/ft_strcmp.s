@@ -1,3 +1,4 @@
+section .text
 global	_ft_strcmp
 
 _ft_strcmp:
@@ -5,24 +6,20 @@ _ft_strcmp:
 	mov rbp, rsp
 	xor rcx, rcx
 	xor rax, rax
-	xor rdx, rdx
 	xor rbx, rbx
 
 _while:
-	mov dl, [rdi + rcx]
+	mov al, [rdi + rcx]
 	mov bl, [rsi + rcx]
-	and dl, dl
+	and al, al
 	je	_test
-	and bl, bl
-	je	_test
-	cmp dl, bl
+	cmp al, bl
 	jne	_test
 	inc rcx
 	jmp	_while
 
 _test:
-	sub rdx, rbx
-	mov rax, rdx
+	sub rax, rbx
 	jmp	_exit
 
 _exit:

@@ -1,3 +1,4 @@
+section .text
 global	_ft_swapi
 
 _ft_swapi:

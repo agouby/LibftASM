@@ -1,3 +1,4 @@
+section .text
 global	_ft_bzero
 extern	_ft_puts
 

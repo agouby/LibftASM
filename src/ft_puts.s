@@ -1,3 +1,4 @@
+section .text
 global	_ft_puts
 extern	_ft_strlen
 
@@ -26,6 +27,7 @@ _null:
 	lea rsi, [rel null]
 	mov rdx, 0x7
 	syscall
+	jc	_fail
 	jmp	_exit
 
 _fail:
@@ -36,6 +38,6 @@ _exit:
 	pop rbp
 	ret
 
-section .data
+section .rodata
 endline	db 0xa
 null	db "(null)", 0xa

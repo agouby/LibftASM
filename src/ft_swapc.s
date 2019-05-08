@@ -1,3 +1,4 @@
+section .text
 global	_ft_swapc
 
 _ft_swapc:

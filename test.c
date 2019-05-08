@@ -31,29 +31,13 @@ size_t s_cnt = 0;
 		printf("%sFailure !\n%s", RED,EOC);
 
 # define GIMMESTR(X) \
-	if (gimme_str(X) == 1) { \
+	if (gimme_str(X) == -1) { \
 		printf("\n"); \
 		return ;}
 
 void	name(char *name)
 {
 	printf("\nTesting %s%s%s:\n\n", YELLOW, name, EOC);
-}
-
-void	success(int arg)
-{
-	if (isprint(arg))
-		printf("\t| %s%4c%s | %sSUCCESS%s |\n", CHAR, (char)arg, EOC, GREEN, EOC);
-	else
-		printf("\t| %s%4d%s | %sSUCCESS%s |\n", INT, arg, EOC, GREEN, EOC);
-}
-
-void	fail(int arg)
-{
-	if (isprint(arg))
-		printf("\t| %s%4c%s | %sFAIL%s    |\n", CHAR, (char)arg, EOC, RED, EOC);
-	else
-		printf("\t| %s%4d%s | %sFAIL%s    |\n", INT, arg, EOC, RED, EOC);
 }
 
 void	test_islower(void)
@@ -265,7 +249,7 @@ int		gimme_str(char *buf)
 	fflush(stdout);
 	ret = read(0, buf, 4096);
 	if (ret == -1 || !ret)
-		return 1;
+		return -11;
 	buf[ret - 1] = '\0';
 	return 0;
 }
@@ -411,28 +395,40 @@ void	test_strequ(void)
 	}
 }
 
-void	test_strdup(void){}
-
-void	print_bits(const size_t size, const void *arg)
+void	test_strdup(void)
 {
-	size_t	i;
-	size_t	j;
-	unsigned char *ptr = (unsigned char *)arg;
+	char buf[4096];
+	char *ptr;
 
-	i = size;
-	while (i)
+	while (1)
 	{
-		j = 0;
-		while (j < 7)
-		{
-			printf("%d", (ptr[i - 1] >> j) & 1);
-			j++;
-		}
-		if (i != 1)
-			printf(" ");
-		i--;
+		name("ft_strdup");
+		GIMMESTR(buf);
+		ptr = ft_strdup(buf);
+		printf("Allocated ptr %p\n", ptr);
+		if (!ptr)
+			return ;
+		printf("String: {%s}\n", ptr);
+		free(ptr);
+	}	
+}
+
+void	test_strcpy(void)
+{
+	char buf1[4096];
+	char buf2[4096];
+	char buf3[4096];
+	char *ptr;
+
+	while (1)
+	{
+		name("ft_strcpy");
+		GIMMESTR(buf1);
+		strcpy(buf3, buf1);
+		ft_strcpy(buf2, buf1);
+		PRINT("agouby result : {%s}\n", buf2);
+		PRINT("System result : {%s}\n", buf3);
 	}
-	puts("");
 }
 
 size_t	hash(const char *str)
@@ -478,7 +474,8 @@ void	fill_hash(void)
 		{"ft_swapi",test_swapi},
 		{"ft_swaps",test_swaps},
 		{"ft_tolower",test_tolower},
-		{"ft_toupper",test_toupper}
+		{"ft_toupper",test_toupper},
+		{"ft_strcpy", test_strcpy}
 	};
 
 	unsigned int h;
@@ -502,13 +499,12 @@ int		main(void)
 	unsigned int n;
 
 	fill_hash();
-
 	while (1)
 	{
 		printf("Enter a function : ");
 		fflush(stdout);
 		ret = read(0, buf, 4096);
-		if (!ret)
+		if (!ret || ret == -1)
 			break ;
 		buf[ret - 1] = '\0';
 		if (*buf) {

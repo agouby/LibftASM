@@ -1,3 +1,4 @@
+section .text
 global	_ft_isupper
 
 _ft_isupper:

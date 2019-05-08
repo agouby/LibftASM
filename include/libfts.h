@@ -24,5 +24,6 @@ void	ft_swapc(char *a, char *b);
 void	ft_swaps(char **a, char **b);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strequ(char const *s1, char const *s2);
+char	*ft_strcpy(char *dst, const char *src);
 
 #endif
